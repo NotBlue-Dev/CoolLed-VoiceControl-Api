@@ -1,6 +1,8 @@
 # Project Title
 
-A brief description of your project, its purpose, and what it does.
+This is the API repository for the CoolLED project. The API is built using FastAPI and allows you to generate the bytes command for the CoolLED device using HTTP requests.
+
+This project is based on the work done by [CrimsonClyde](https://git.team23.org/CrimsonClyde) on reverse engineering the CoolLED devices.
 
 ## Table of Contents
 
@@ -16,7 +18,7 @@ To set up the project, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
+   git clone https://github.com/NotBlue-Dev/CoolLed-VoiceControl-Api
    cd yourproject
    ```
 
