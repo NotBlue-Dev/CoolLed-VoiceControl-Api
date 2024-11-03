@@ -2,17 +2,18 @@ import re
 import asyncio
 from ..utils import split_bytearray, escape_bytefield, get_xor_checksum
 
-CONTENT_TYPE_TEXT = 0x00
-CONTENT_TYPE_DRAW = 0x01
-CONTENT_TYPE_ANIMATE = 0x02
+CONTENT_TYPE_TEXT = 2
+CONTENT_TYPE_DRAW = 3
+CONTENT_TYPE_ANIMATE = 4
 
 def encapsulate_payload(payload):
-    length = len(payload)
-    checksum = 0
-    for byte in payload:
-        checksum ^= byte
-    payload = bytearray([0x01]) + payload + bytearray([length & 0xFF, checksum])
-    return payload
+    download_size = len(payload).to_bytes(2, byteorder='big')
+    # join the payload with the size
+    download_payload = bytearray().join([download_size, payload])
+    # escape the joined payload
+    download_payload = escape_bytefield(download_payload)
+    # the full payload also needs start and stop markers
+    return bytearray().join([b'\x01', download_payload, b'\x03'])
 
 def get_transport_payloads_for_content(content_type_id, content):
     # split the content into (128-byte) chunks

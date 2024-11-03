@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from payloads import createTextPayload, createImagePayload, createAnimationPayload
-from transport import encapsulate_payload
+from src.data.payloads import createTextPayload, createImagePayload, createAnimationPayload
+from src.data.transport import encapsulate_payload
 from src.utils.utils_bytes import process_payload
 
 app = FastAPI()

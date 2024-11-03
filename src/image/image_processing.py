@@ -10,7 +10,7 @@ def renderTextToImage(txt, color):
     x = 0
     for letter in txt:
         draw.text((x, y_offset), letter, color, font=font)
-        x += font.getbbox(letter)[0] + 1
+        x += font.getlength(letter) + 1  # Use font.getlength instead of font.getsize
 
     del draw
     left, upper, right, lower = img.getbbox()

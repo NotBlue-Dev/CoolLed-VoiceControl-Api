@@ -5,7 +5,8 @@ from PIL import Image
 def createTextPayload(txt, color):
     color = color or "white"
     im = renderTextToImage(txt, color)
-    
+    im.show()
+ 
     imWidth, imHeight = im.size
     bR, bG, bB = get_separate_pixel_bytefields(im, imWidth, 16, "black")
     pixel_bits_all = bytearray().join([bR, bG, bB])
